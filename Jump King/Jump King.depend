@@ -1,0 +1,46 @@
+# depslib dependency file v1.0
+1741323499 source:c:\users\admin\onedrive\máy tính\comeback\jump king\graphics.cpp
+	<iostream>
+	<SDL.h>
+	<SDL_image.h>
+	"graphics.h"
+	"Animation.h"
+
+1741323513 c:\users\admin\onedrive\máy tính\comeback\jump king\graphics.h
+	<SDL.h>
+	<SDL_image.h>
+	"defs.h"
+	"Animation.h"
+
+1741324184 c:\users\admin\onedrive\máy tính\comeback\jump king\defs.h
+
+1741323863 c:\users\admin\onedrive\máy tính\comeback\jump king\animation.h
+	<bits/stdc++.h>
+	<SDL.h>
+	<SDL_image.h>
+	"defs.h"
+
+1741330868 source:c:\users\admin\onedrive\máy tính\comeback\jump king\main.cpp
+	<bits/stdc++.h>
+	<SDL.h>
+	<SDL_image.h>
+	"defs.h"
+	"Graphics.h"
+	"Movements.h"
+	"Platforms.h"
+	"Animation.h"
+
+1741250372 c:\users\admin\onedrive\máy tính\comeback\jump king\movements.h
+	<iostream>
+	<SDL.h>
+	<SDL_image.h>
+	"defs.h"
+	"Graphics.h"
+
+1741319807 c:\users\admin\onedrive\máy tính\comeback\jump king\platforms.h
+	<iostream>
+	<SDL.h>
+	<SDL_image.h>
+	"defs.h"
+	"Graphics.h"
+
