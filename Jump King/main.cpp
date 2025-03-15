@@ -6,26 +6,23 @@
 #include "Movements.h"
 #include "Platforms.h"
 #include "Animation.h"
-
+#include "Colliding.h"
 using namespace std;
-
-void waitUntilKeyPressed()
-{
-    SDL_Event e;
-    while (true) {
-        if ( SDL_PollEvent(&e) != 0 &&
-             e.type == SDL_QUIT)
-            return;
-        SDL_Delay(10);
-    }
-}
 
 int main(int argc, char* argv[])
 {
+    int level = 1, low = SCREEN_HEIGHT, high = 0;
     Graphics graphics;
     graphics.init();
 
-    SDL_Texture* background = graphics.loadTexture("1.png");
+    SDL_Texture* background[10];
+
+    for (int i = 1; i <= totallevel; i++)
+    {
+        ostringstream filename;
+        filename << i << ".png";
+        background[i] = graphics.loadTexture(filename.str().c_str());
+    }
 
     SDL_Texture* king = graphics.loadTexture("idle.png");
     SDL_Texture* king2 = graphics.loadTexture("idle2.png");
@@ -52,7 +49,20 @@ int main(int argc, char* argv[])
     bool quit = false, isright = true;
     SDL_Event event;
     while (!quit) {
-        graphics.prepareScene(background);
+        while (player.y + charheight < high)
+        {
+            low = high;
+            high -= SCREEN_HEIGHT;
+            level++;
+        }
+        while (player.y + charheight > low)
+        {
+            high = low;
+            low += SCREEN_HEIGHT;
+            level--;
+        }
+        player.y += SCREEN_HEIGHT * (level - 1);
+        graphics.prepareScene(background[level]);
         while (SDL_PollEvent(&event)) {
             if (event.type == SDL_QUIT) quit = true;
         }
@@ -67,14 +77,14 @@ int main(int argc, char* argv[])
         }
         if (!squat)
         {
-            if (currentKeyStates[SDL_SCANCODE_LEFT])
+            if (currentKeyStates[SDL_SCANCODE_LEFT] && !checkcollidleft(player.x, player.y, level))
             {
                 player.turnLeft();
                 isrunningleft = true;
                 isright = false;
                 runningleftanimation.tick();
             }
-            if (currentKeyStates[SDL_SCANCODE_RIGHT])
+            if (currentKeyStates[SDL_SCANCODE_RIGHT] && !checkcollidright(player.x, player.y, level))
             {
                 player.turnRight();
                 isrunningright = true;
@@ -92,7 +102,7 @@ int main(int argc, char* argv[])
 
         bool check = false;
 
-        for (Platform& platform : platforms) {
+        for (Platform& platform : platforms[level]) {
             if (player.y + charheight >= platform.rect.y &&
                 player.y + charheight <= platform.rect.y + acceptable &&
                 player.x + charwidth - diff >= platform.rect.x &&
@@ -112,13 +122,11 @@ int main(int argc, char* argv[])
             player.grav = 1;
         }
 
-        /*for (const Platform& platform : platforms) {
+        /*for (const Platform& platform : platforms[level]) {
             SDL_RenderFillRect(graphics.renderer, &platform.rect);
         }*/
 
-
         player.upd();
-
         if (squat)
             graphics.renderTexture(kingsquat, player.x, player.y);
         else
@@ -133,13 +141,13 @@ int main(int argc, char* argv[])
                         else
                             graphics.renderTexture(king2, player.x, player.y);
         graphics.presentScene();
+        player.y -= SCREEN_HEIGHT * (level - 1);
         SDL_Delay(0);
     }
-
     SDL_DestroyTexture( king );
     king = NULL;
-    SDL_DestroyTexture( background );
-    background = NULL;
+    SDL_DestroyTexture( background[level] );
+    background[level] = NULL;
 
     graphics.quit();
     return 0;

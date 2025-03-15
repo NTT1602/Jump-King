@@ -12,7 +12,7 @@
 	"defs.h"
 	"Animation.h"
 
-1741324184 c:\users\admin\onedrive\máy tính\comeback\jump king\defs.h
+1741851318 c:\users\admin\onedrive\máy tính\comeback\jump king\defs.h
 
 1741323863 c:\users\admin\onedrive\máy tính\comeback\jump king\animation.h
 	<bits/stdc++.h>
@@ -20,7 +20,7 @@
 	<SDL_image.h>
 	"defs.h"
 
-1741330868 source:c:\users\admin\onedrive\máy tính\comeback\jump king\main.cpp
+1741855890 source:c:\users\admin\onedrive\máy tính\comeback\jump king\main.cpp
 	<bits/stdc++.h>
 	<SDL.h>
 	<SDL_image.h>
@@ -29,18 +29,25 @@
 	"Movements.h"
 	"Platforms.h"
 	"Animation.h"
+	"Colliding.h"
 
-1741250372 c:\users\admin\onedrive\máy tính\comeback\jump king\movements.h
+1741851319 c:\users\admin\onedrive\máy tính\comeback\jump king\movements.h
 	<iostream>
 	<SDL.h>
 	<SDL_image.h>
 	"defs.h"
 	"Graphics.h"
 
-1741319807 c:\users\admin\onedrive\máy tính\comeback\jump king\platforms.h
+1741858120 c:\users\admin\onedrive\máy tính\comeback\jump king\platforms.h
 	<iostream>
 	<SDL.h>
 	<SDL_image.h>
 	"defs.h"
 	"Graphics.h"
+
+1741851898 c:\users\admin\onedrive\máy tính\comeback\jump king\colliding.h
+	<SDL.h>
+	<SDL_image.h>
+	"defs.h"
+	"platforms.h"
 

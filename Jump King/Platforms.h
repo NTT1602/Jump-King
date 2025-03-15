@@ -38,11 +38,37 @@ public:
     }
 };
 
-std::vector<Platform> platforms = {
+std::vector<std::vector<Platform>> platforms = {
+    {
+        Platform(0, 0, 0, 0),
+        Platform(0, 0, 0, 0),
+        Platform(0, 0, 0, 0),
+        Platform(0, 0, 0, 0)
+    },
+    {
         Platform(0, 720, 1000, 50),
         Platform(0, 400, 270, 600),
         Platform(720, 400, 270, 600),
         Platform(380, 80, 240, 140)
+    },
+    {
+        //Platform(0, 720, 1000, 50),
+        Platform(610, 650, 210, 70),
+        Platform(530, 430, 160, 90),
+        Platform(850, 430, 200, 80),
+        Platform(245, 220, 158, 155),
+        Platform(0, 170, 170, 200)
+    },
+    {
+        //Platform(0, 720, 1000, 50),
+        Platform(0, 0, 20, SCREEN_HEIGHT),
+        Platform(980, 0, 20, SCREEN_HEIGHT),
+        Platform(435, 675, 100, 30),
+        Platform(670, 675, 110, 40),
+        Platform(885, 565, 115, 40),
+        Platform(400, 490, 300, 80),
+        Platform(595, 460, 105, 30)
+    }
 };
 
 #endif
