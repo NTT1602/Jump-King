@@ -1,6 +1,7 @@
 #include <iostream>
 #include <SDL.h>
 #include <SDL_image.h>
+#include <SDL_mixer.h>
 #include "graphics.h"
 #include "Animation.h"
 void Graphics::logErrorAndExit(const char* msg, const char* error)
@@ -26,6 +27,12 @@ void Graphics::init() {
 
     SDL_SetHint(SDL_HINT_RENDER_SCALE_QUALITY, "linear");
     SDL_RenderSetLogicalSize(renderer, SCREEN_WIDTH, SCREEN_HEIGHT);
+
+    if( Mix_OpenAudio( 44100, MIX_DEFAULT_FORMAT, 2, 2048 ) < 0 )
+    {
+        logErrorAndExit( "SDL_mixer could not initialize! SDL_mixer Error: %s\n", Mix_GetError() );
+    }
+
 }
 
 void Graphics::prepareScene()
@@ -54,6 +61,17 @@ SDL_Texture* Graphics::loadTexture(const char *filename)
         SDL_LogMessage(SDL_LOG_CATEGORY_APPLICATION, SDL_LOG_PRIORITY_ERROR, "Load texture %s", IMG_GetError());
 
     return texture;
+}
+
+Mix_Music* Graphics::loadMusic(const char* path)
+{
+    Mix_Music *gMusic = Mix_LoadMUS(path);
+    if (gMusic == nullptr) {
+        SDL_LogMessage(SDL_LOG_CATEGORY_APPLICATION,
+                        SDL_LOG_PRIORITY_ERROR,
+            "Could not load music! SDL_mixer Error: %s", Mix_GetError());
+    }
+    return gMusic;
 }
 
 void Graphics::renderTexture(SDL_Texture *texture, int x, int y)
@@ -86,10 +104,23 @@ void Graphics::blitRect(SDL_Texture *texture, SDL_Rect *src, int x, int y)
     SDL_RenderCopy(renderer, texture, src, &dest);
 }
 
+void Graphics::play(Mix_Music *gMusic)
+{
+    if (gMusic == nullptr) return;
+
+    if (Mix_PlayingMusic() == 0) {
+        Mix_PlayMusic( gMusic, -1 );
+    }
+    else if( Mix_PausedMusic() == 1 ) {
+        Mix_ResumeMusic();
+    }
+}
+
+
 void Graphics::quit()
 {
     IMG_Quit();
-
+    Mix_Quit();
     SDL_DestroyRenderer(renderer);
     SDL_DestroyWindow(window);
     SDL_Quit();

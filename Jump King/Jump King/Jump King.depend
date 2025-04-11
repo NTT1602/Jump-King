@@ -1,14 +1,16 @@
 # depslib dependency file v1.0
-1743085613 source:c:\users\admin\onedrive\máy tính\comeback\jump king\graphics.cpp
+1744373143 source:c:\users\admin\onedrive\máy tính\comeback\jump king\graphics.cpp
 	<iostream>
 	<SDL.h>
 	<SDL_image.h>
+	<SDL_mixer.h>
 	"graphics.h"
 	"Animation.h"
 
-1741323513 c:\users\admin\onedrive\máy tính\comeback\jump king\graphics.h
+1744373143 c:\users\admin\onedrive\máy tính\comeback\jump king\graphics.h
 	<SDL.h>
 	<SDL_image.h>
+	<SDL_mixer.h>
 	"defs.h"
 	"Animation.h"
 
@@ -20,7 +22,7 @@
 	<SDL_image.h>
 	"defs.h"
 
-1743183781 source:c:\users\admin\onedrive\máy tính\comeback\jump king\main.cpp
+1744373306 source:c:\users\admin\onedrive\máy tính\comeback\jump king\main.cpp
 	<bits/stdc++.h>
 	<SDL.h>
 	<SDL_image.h>
@@ -38,14 +40,14 @@
 	"defs.h"
 	"Graphics.h"
 
-1743183781 c:\users\admin\onedrive\máy tính\comeback\jump king\platforms.h
+1743212695 c:\users\admin\onedrive\máy tính\comeback\jump king\platforms.h
 	<iostream>
 	<SDL.h>
 	<SDL_image.h>
 	"defs.h"
 	"Graphics.h"
 
-1743180826 c:\users\admin\onedrive\máy tính\comeback\jump king\colliding.h
+1743210883 c:\users\admin\onedrive\máy tính\comeback\jump king\colliding.h
 	<SDL.h>
 	<SDL_image.h>
 	"defs.h"

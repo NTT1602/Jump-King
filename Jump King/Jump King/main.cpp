@@ -8,7 +8,6 @@
 #include "Animation.h"
 #include "Colliding.h"
 using namespace std;
-
 Graphics graphics;
 int level = 1, low = SCREEN_HEIGHT, high = 0;
 bool winning = false;
@@ -40,15 +39,17 @@ void startGame()
 
     SDL_Texture* winningscreen = graphics.loadTexture("winning screen.png");
 
+
     Mouse player;
 
     player.x = SCREEN_WIDTH / 2;
     player.y = SCREEN_HEIGHT / 2;
 
     double power = 0;
-
     bool quit = false, isright = true;
     SDL_Event event;
+    Mix_Music *gMusic = graphics.loadMusic("chill.mp3");
+        graphics.play(gMusic);
     while (!quit && !winning) {
         while (player.y + charheight < high)
         {
@@ -175,7 +176,6 @@ void startGame()
 int main(int argc, char* argv[])
 {
     graphics.init();
-
     SDL_Texture* waitingscreen = graphics.loadTexture("waiting screen.jpg");
     bool running = true;
     SDL_Event event;
@@ -192,7 +192,6 @@ int main(int argc, char* argv[])
             }
         }
         graphics.presentScene();
-
     }
     if (winning)
     {

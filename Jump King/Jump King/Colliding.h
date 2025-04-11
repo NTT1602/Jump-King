@@ -29,8 +29,8 @@ bool checkcollidleft(int x, int y, int level)
     for (Platform& platform : platforms[level]) {
         if (x < platform.rect.x + platform.rect.w &&
             x > platform.rect.x &&
-            y + charheight > platform.rect.y &&  // Character is below the platform (standing on it)
-            y + charheight < platform.rect.y + platform.rect.h)  // Character is not deeper than platform
+            y + charheight > platform.rect.y &&
+            y + charheight < platform.rect.y + platform.rect.h)
         {
             return true;
         }
