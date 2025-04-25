@@ -7,8 +7,9 @@
 #include "defs.h"
 #include "Graphics.h"
 struct Mouse {
-    int x, y;
-    int speed = INITIAL_SPEED;
+    double x, y, nonstop = 0;
+    bool canmove = true;
+    double speed = INITIAL_SPEED;
     double grav = 0;
     bool isjumping = false;
     void turnLeft() {
@@ -25,14 +26,20 @@ struct Mouse {
             grav += power;
         }
     }
-    void upd()
+    void upd(bool ouch)
     {
         if(isjumping)
         {
             grav += 1;
             if (grav > gravmax)
                 grav = gravmax;
-            y += grav;
+            if (!ouch) y += grav;
+            else
+            {
+                y += bouncing;
+                if (grav < 0)
+                    grav = 0;
+            }
         }
     }
 };

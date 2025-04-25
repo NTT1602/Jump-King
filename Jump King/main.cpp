@@ -8,15 +8,16 @@
 #include "Animation.h"
 #include "Colliding.h"
 using namespace std;
-
-int main(int argc, char* argv[])
+Graphics graphics;
+int level = 1, low = SCREEN_HEIGHT, high = 0;
+Uint32 startTime = SDL_GetTicks();
+bool winning = false;
+void startGame()
 {
-    int level = 1, low = SCREEN_HEIGHT, high = 0;
-    Graphics graphics;
     graphics.init();
-
+    Mix_Music *gMusic = graphics.loadMusic("chill.mp3");
+    graphics.play(gMusic);
     SDL_Texture* background[10];
-
     for (int i = 1; i <= totallevel; i++)
     {
         ostringstream filename;
@@ -26,6 +27,8 @@ int main(int argc, char* argv[])
 
     SDL_Texture* king = graphics.loadTexture("idle.png");
     SDL_Texture* king2 = graphics.loadTexture("idle2.png");
+
+    SDL_Texture* princess = graphics.loadTexture("Princess.png");
 
     Sprite runningrightanimation;
     SDL_Texture* kingrunningright = graphics.loadTexture("runningright.png");
@@ -37,19 +40,19 @@ int main(int argc, char* argv[])
 
     SDL_Texture* kingsquat = graphics.loadTexture("squat.png");
 
-    graphics.presentScene();
+    SDL_Texture* winningscreen = graphics.loadTexture("winning screen.png");
+
 
     Mouse player;
 
-    player.x = SCREEN_WIDTH / 2;
-    player.y = 620;
+    player.x = SCREEN_WIDTH / 2 - 200;
+    player.y = SCREEN_HEIGHT / 2 - 4400;
 
     double power = 0;
-
     bool quit = false, isright = true;
     SDL_Event event;
-    while (!quit) {
-        while (player.y + charheight < high)
+    while (!quit && !winning) {
+        while (player.y + charheight < high && level != 6)
         {
             low = high;
             high -= SCREEN_HEIGHT;
@@ -66,19 +69,22 @@ int main(int argc, char* argv[])
         while (SDL_PollEvent(&event)) {
             if (event.type == SDL_QUIT) quit = true;
         }
+
         const Uint8* currentKeyStates = SDL_GetKeyboardState(NULL);
 
-        bool squat = false, isrunningright = false, isrunningleft = false;
+        bool squat = false, isrunningright = false, isrunningleft = false, ouch = false;
 
         if (currentKeyStates[SDL_SCANCODE_SPACE] && !player.isjumping)
         {
             squat = true;
             power = max (power - 0.5, jumph);
         }
-        if (!squat)
+
+        if (!squat && player.canmove)
         {
             if (currentKeyStates[SDL_SCANCODE_LEFT] && !checkcollidleft(player.x, player.y, level))
             {
+
                 player.turnLeft();
                 isrunningleft = true;
                 isright = false;
@@ -116,6 +122,16 @@ int main(int argc, char* argv[])
             }
         }
 
+        for (Platform& platform : platforms[level]) {
+            if (player.y <= platform.rect.y + platform.rect.h &&
+                player.y >= platform.rect.y + platform.rect.h - acceptable &&
+                player.x + charwidth - diff >= platform.rect.x &&
+                player.x + diff <= platform.rect.x + platform.rect.w)
+            {
+                ouch = true;
+            }
+        }
+
         if (!check && !player.isjumping)
         {
             player.isjumping = true;
@@ -126,7 +142,8 @@ int main(int argc, char* argv[])
             SDL_RenderFillRect(graphics.renderer, &platform.rect);
         }*/
 
-        player.upd();
+        player.upd(ouch);
+
         if (squat)
             graphics.renderTexture(kingsquat, player.x, player.y);
         else
@@ -140,16 +157,52 @@ int main(int argc, char* argv[])
                             graphics.renderTexture(king, player.x, player.y);
                         else
                             graphics.renderTexture(king2, player.x, player.y);
+        if (level == 6)
+        {
+            graphics.renderTexture(princess, princessx, princessy);
+            if (player.x + charwidth > princessx &&
+                player.x < princessx &&
+                player.y == princessy)
+            {
+                winning = true;
+                graphics.prepareScene(winningscreen);
+            }
+        }
         graphics.presentScene();
         player.y -= SCREEN_HEIGHT * (level - 1);
         SDL_Delay(0);
     }
-    SDL_DestroyTexture( king );
-    king = NULL;
-    SDL_DestroyTexture( background[level] );
-    background[level] = NULL;
+}
 
+int main(int argc, char* argv[])
+{
+    graphics.init();
+    SDL_Texture* waitingscreen = graphics.loadTexture("waiting screen.jpg");
+    bool running = true;
+    SDL_Event event;
+    while (running) {
+        const Uint8* currentKeyStates = SDL_GetKeyboardState(NULL);
+        graphics.prepareScene(waitingscreen);
+        while (SDL_PollEvent(&event)) {
+            if (event.type == SDL_QUIT) {
+                running = false;
+            } else if (currentKeyStates[SDL_SCANCODE_SPACE]) {
+                graphics.quit();
+                startGame();
+                running = false;
+            }
+        }
+        graphics.presentScene();
+    }
+    Uint32 elapsedTime = SDL_GetTicks() - startTime;
+        int minutes = elapsedTime / 60000;
+        int seconds = (elapsedTime % 60000) / 1000;
+        cout << minutes << " " << seconds << '\n';
+    if (winning)
+    {
+        SDL_Delay(3000);
+    }
     graphics.quit();
+    graphics.endgame();
     return 0;
-
 }
