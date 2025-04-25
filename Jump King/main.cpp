@@ -45,8 +45,8 @@ void startGame()
 
     Mouse player;
 
-    player.x = SCREEN_WIDTH / 2 - 200;
-    player.y = SCREEN_HEIGHT / 2 - 4400;
+    player.x = SCREEN_WIDTH / 2;
+    player.y = SCREEN_HEIGHT / 2;
 
     double power = 0;
     bool quit = false, isright = true;
@@ -194,10 +194,10 @@ int main(int argc, char* argv[])
         }
         graphics.presentScene();
     }
-    Uint32 elapsedTime = SDL_GetTicks() - startTime;
+    /*Uint32 elapsedTime = SDL_GetTicks() - startTime;
         int minutes = elapsedTime / 60000;
         int seconds = (elapsedTime % 60000) / 1000;
-        cout << minutes << " " << seconds << '\n';
+        cout << minutes << " " << seconds << '\n';*/
     if (winning)
     {
         SDL_Delay(3000);
