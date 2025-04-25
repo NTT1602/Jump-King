@@ -120,8 +120,12 @@ void Graphics::play(Mix_Music *gMusic)
 void Graphics::quit()
 {
     IMG_Quit();
-    Mix_Quit();
     SDL_DestroyRenderer(renderer);
     SDL_DestroyWindow(window);
+}
+
+void Graphics::endgame()
+{
+    Mix_Quit();
     SDL_Quit();
 }

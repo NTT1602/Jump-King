@@ -23,6 +23,7 @@ struct Graphics {
     void blitRect(SDL_Texture *texture, SDL_Rect *src, int x, int y);
     void play(Mix_Music *gMusic);
     void quit();
+    void endgame();
 };
 
 #endif // _GRAPHICS__H

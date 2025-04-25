@@ -118,8 +118,7 @@ std::vector<std::vector<Platform>> platforms = {
         Platform(0, 0, 400, 35),
         Platform(285, 0, 110, 125),
         Platform(600, 0, 290, 52),
-        Platform(685, 0, 205, 90),
-        Platform(0, 0, 800, 10)
+        Platform(685, 0, 205, 90)
     },
     {
     }

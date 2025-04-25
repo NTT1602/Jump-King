@@ -10,10 +10,13 @@
 using namespace std;
 Graphics graphics;
 int level = 1, low = SCREEN_HEIGHT, high = 0;
+Uint32 startTime = SDL_GetTicks();
 bool winning = false;
 void startGame()
 {
     graphics.init();
+    Mix_Music *gMusic = graphics.loadMusic("chill.mp3");
+    graphics.play(gMusic);
     SDL_Texture* background[10];
     for (int i = 1; i <= totallevel; i++)
     {
@@ -42,16 +45,14 @@ void startGame()
 
     Mouse player;
 
-    player.x = SCREEN_WIDTH / 2;
-    player.y = SCREEN_HEIGHT / 2;
+    player.x = SCREEN_WIDTH / 2 - 200;
+    player.y = SCREEN_HEIGHT / 2 - 4400;
 
     double power = 0;
     bool quit = false, isright = true;
     SDL_Event event;
-    Mix_Music *gMusic = graphics.loadMusic("chill.mp3");
-        graphics.play(gMusic);
     while (!quit && !winning) {
-        while (player.y + charheight < high)
+        while (player.y + charheight < high && level != 6)
         {
             low = high;
             high -= SCREEN_HEIGHT;
@@ -193,10 +194,15 @@ int main(int argc, char* argv[])
         }
         graphics.presentScene();
     }
+    Uint32 elapsedTime = SDL_GetTicks() - startTime;
+        int minutes = elapsedTime / 60000;
+        int seconds = (elapsedTime % 60000) / 1000;
+        cout << minutes << " " << seconds << '\n';
     if (winning)
     {
         SDL_Delay(3000);
     }
     graphics.quit();
+    graphics.endgame();
     return 0;
 }

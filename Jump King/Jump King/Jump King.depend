@@ -1,5 +1,5 @@
 # depslib dependency file v1.0
-1744373143 source:c:\users\admin\onedrive\máy tính\comeback\jump king\graphics.cpp
+1744866512 source:c:\users\admin\onedrive\máy tính\comeback\jump king\graphics.cpp
 	<iostream>
 	<SDL.h>
 	<SDL_image.h>
@@ -7,7 +7,7 @@
 	"graphics.h"
 	"Animation.h"
 
-1744373143 c:\users\admin\onedrive\máy tính\comeback\jump king\graphics.h
+1744866522 c:\users\admin\onedrive\máy tính\comeback\jump king\graphics.h
 	<SDL.h>
 	<SDL_image.h>
 	<SDL_mixer.h>
@@ -22,7 +22,7 @@
 	<SDL_image.h>
 	"defs.h"
 
-1744373306 source:c:\users\admin\onedrive\máy tính\comeback\jump king\main.cpp
+1744865362 source:c:\users\admin\onedrive\máy tính\comeback\jump king\main.cpp
 	<bits/stdc++.h>
 	<SDL.h>
 	<SDL_image.h>
