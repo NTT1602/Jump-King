@@ -24,7 +24,7 @@ Jump King là một tựa game thể loại jumping. Là một tựa game đơn 
 - Có một cô công chúa xinh đẹp ở trên đỉnh
 ![image4](https://github.com/NTT1602/Jump-King/blob/main/Jump%20King/anhmau4.png)
 - Hãy cố gắng chạm được vào cô ấy và bạn sẽ giành chiến thắng
-
+![image5](https://github.com/NTT1602/Jump-King/blob/main/Jump%20King/anhmau5.png)
 ### Về source code game
 - Folder graphics:
   - Khởi tạo window và renderer
