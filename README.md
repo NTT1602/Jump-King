@@ -1,5 +1,5 @@
 # Jump-King - NTT
-- Gameplay và cách phá đảo:
+- Gameplay: https://drive.google.com/drive/folders/1xAaxd3onWOELgtUtpRr821e4cmnjjD8-?usp=sharing
 # Giới thiệu game
 Jump King là một tựa game thể loại jumping. Là một tựa game đơn giản tuy nhiên lại có độ khó cao, mang lại trải nghiệm có phần cay cú và khó chịu cho người chơi:). Hãy cùng cố gắng nhảy lên đỉnh và cưới công chúa nhé!
 - [1. Bắt đầu game](#1-bắt-đầu-game)
@@ -7,6 +7,7 @@ Jump King là một tựa game thể loại jumping. Là một tựa game đơn 
 - [3. Chiến thắng](#3-chiến-thắng)
 - [Về source code game](#về-source-code-game)
 - [Về đồ họa của game](#về-đồ-họa-của-game)
+- 
 ### 1. Bắt đầu game
 - Sau khi màn hình chờ của game đã xuất hiện, hãy ấn space để bắt đầu game.
 ![Waiting Screen](https://github.com/NTT1602/Jump-King/blob/main/Jump%20King/waiting%20screen.jpg)
@@ -25,10 +26,11 @@ Jump King là một tựa game thể loại jumping. Là một tựa game đơn 
 ![image4](https://github.com/NTT1602/Jump-King/blob/main/Jump%20King/anhmau4.png)
 - Hãy cố gắng chạm được vào cô ấy và bạn sẽ giành chiến thắng
 ![image5](https://github.com/NTT1602/Jump-King/blob/main/Jump%20King/anhmau5.png)
+
 ### Về source code game
 - Folder graphics:
   - Khởi tạo window và renderer
-  - Chứa hầu hết các câu lệnh của SDL2, SDL2_image, SDL2_ttf, sử dụng để vẽ load ảnh, chữ và vẽ lên renderer, window.
+  - Chứa hầu hết các câu lệnh của SDL2, SDL2_image, SDL2_mixer, sử dụng để vẽ load ảnh, vẽ lên renderer, window, và phát nhạc.
 - Folder defs:
   - Chứa các thông số của game
 - Folder animation:
