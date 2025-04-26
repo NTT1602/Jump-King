@@ -1,5 +1,5 @@
 # Jump-King - NTT
-- Gameplay: https://drive.google.com/drive/folders/1xAaxd3onWOELgtUtpRr821e4cmnjjD8-?usp=sharing
+- Gameplay: https://drive.google.com/file/d/1zT2ZAnbohptq2O3tnn4WKsj-AOU_GERQ/view?usp=drive_link
 # Giới thiệu game
 Jump King là một tựa game thể loại jumping. Là một tựa game đơn giản tuy nhiên lại có độ khó cao, mang lại trải nghiệm có phần cay cú và khó chịu cho người chơi:). Hãy cùng cố gắng nhảy lên đỉnh và cưới công chúa nhé!
 - [1. Bắt đầu game](#1-bắt-đầu-game)
